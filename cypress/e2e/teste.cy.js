@@ -24,13 +24,9 @@ describe('order ticket spec', () => {
     cy.get('#search-trips-btn').click();
 
     // Reserva a poltrona 
-      cy.contains('Reservar poltrona').first().click().then(() => {
-      cy.get('.seat.available').first().click({force: true});
-      cy.get('#next-button').should('be.visible').click({force: true});
-    });
-    
-    // Espera as poltronas ficarem visíveis e seleciona a primeira
+    cy.contains('Reservar poltrona').first().click()
     cy.get('.seat.available').should('be.visible').first().click({ force: true })
+    cy.get('#next-button').should('not.be.disabled').click();
 
     // Digita os dados do Cliente
     cy.get('input[placeholder="Digite seu nome"]').first().type("Alice Salvina");
